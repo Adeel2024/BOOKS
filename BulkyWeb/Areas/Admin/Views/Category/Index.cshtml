@@ -1,0 +1,57 @@
+﻿@model List<Category> // Using @ to call model and use C# code 
+@*                 <partial name="_Notification" />              24-  Implementing temp data in our view using partial view,----now implemented inside _Layout commnt 25  *@
+   
+<div class="card shadow border-0 my-4 ">
+    <div class="card-header bg-secondary bg-gradient modal-lg py-3">
+        <div class="row">
+            <h2 class="col-12 text-white py-2"> Category List</h2>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                @*9- Making Create button and assigning action---------head to Category controller *@
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Category
+                </a>
+            </div>
+        </div>    @*6- Heading *@
+        <table class="table table-bordered table-striped">
+            @* Table *@
+            <thead>
+                <tr>
+                    <th>
+                        Category Name
+                    </th>
+                    <th>
+                        Display Order
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))  //7- Looping through objects in Model i-e list of Category and ordering by ascending order
+                {
+                    <tr>
+                        <td>@obj.Name</td>   @*8- Fetching Names and DisplayOrder Values *@
+                        <td>@obj.DisplayOrder</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Category" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
+                                    @* 18- Creating Edit and Delete button *@
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿@model List<Product> // Using @ to call model and use C# code 
+@*                 <partial name="_Notification" />              24-  Implementing temp data in our view using partial view,----now implemented inside _Layout commnt 25  *@
+   
+<div class="card shadow border-0 my-4 ">
+    <div class="card-header bg-secondary bg-gradient modal-lg py-3">
+        <div class="row">
+            <h2 class="col-12 text-white py-2"> Product List</h2>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6"> 
+            </div>
+            <div class="col-6 text-end">
+                @*9- Making Create button and assigning action---------head to Product controller *@
+                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Product
+                </a>
+            </div>
+        </div>    @*6- Heading *@
+        <table id="tblData"  class="table table-bordered table-striped">
+            @* Table *@
+            <thead>
+                <tr>
+                    <th> Title </th>
+                    <th> Description </th>
+                    <th> ISBN </th>
+                    <th> Price </th>
+                    <th> Author </th>
+                    <th> Category </th>
+                    <th></th>
+                </tr>
+            </thead>
+           
+                
+        </table> 
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}
